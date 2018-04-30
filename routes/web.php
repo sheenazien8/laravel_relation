@@ -53,3 +53,21 @@ Route::get('/create_user_profile', function() {
 	$user->profile()->save($profile);
 	return $user;
 });
+
+Route::get('/read_user', function() {
+	// mengakses table user dengan id 1
+	$user = User::find(2);
+
+	// mengakses field addres di dalam table profile
+	// return $user->profile->address;
+
+	// mengakses field di dalam table profile
+	$data =[
+		'name' => $user->name,
+		'email' => $user->email,
+		'phone' => $user->profile->phone,
+		'address' => $user->profile->address,
+	];
+
+	return $data;
+});
