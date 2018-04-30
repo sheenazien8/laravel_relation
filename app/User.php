@@ -30,6 +30,6 @@ class User extends Authenticatable
     public function profile()
     {
         // menghubungkan model user ke model profile
-        $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 }
