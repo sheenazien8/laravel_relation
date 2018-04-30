@@ -71,3 +71,17 @@ Route::get('/read_user', function() {
 
 	return $data;
 });
+
+Route::get('/read_profile', function() {
+	// mengakses profile berdasarkan column phone
+	$profile = Profile::where('phone','089638706830')->first();
+
+	// mengakses kebalikannya
+	$data = [
+		'email' => $profile->user->email,
+		'name' => $profile->user->name,
+		'phone' => $profile->phone,
+		'address' => $profile->address,
+	];
+	return $data;
+});
