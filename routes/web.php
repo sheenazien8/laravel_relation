@@ -18,6 +18,7 @@ Route::get('/', function () {
 use App\User;
 use App\Profile;
 use App\Post;
+use App\Category;
 
 Route::get('/create_user', function() {
     $user = User::create([
@@ -202,5 +203,27 @@ Route::get('/create_categories', function() {
 
 	return 'success';
 
+});
+
+
+Route::get('/read_category', function() {
+	// mencari data melalui model post
+    // $post = Post::find(1);
+
+    // $categories = $post->categories;
+    // foreach ($categories as $category) {
+    // 	echo $category->slug."</br>";
+    // }
+
+// mencari data melalui model category
+	$category = Category::find(3);
+
+	$posts = $category->posts;
+
+	foreach ($posts as $post) {
+		echo $post->title. "</br>";
+	}
 
 });
+
+
