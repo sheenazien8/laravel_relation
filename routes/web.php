@@ -166,3 +166,12 @@ Route::get('/update_post', function() {
 
 		return 'success';
 });
+
+
+Route::get('/delete_post', function() {
+   $user = User::find(1);
+
+   $user->posts()->whereId(2)->delete();
+
+   return 'success';
+});
