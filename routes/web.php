@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 use App\User;
 use App\Profile;
-
+use App\Post;
 
 Route::get('/create_user', function() {
     $user = User::create([
@@ -124,13 +124,13 @@ Route::get('/delete_profile', function() {
 
 Route::get('/create_post', function() {
 
-	// $user = User::create([
-	// 	'name' => 'Sheena',
-	// 	'email' => 'sheenazien@gmial.com',
-	// 	'password' => bcrypt('8slamp'),
-	// ]);
+	$user = User::create([
+		'name' => 'Sheena',
+		'email' => 'sheenazien@gmial.com',
+		'password' => bcrypt('8slamp'),
+	]);
 
-	$user = User::findOrFail(1);
+	// $user = User::findOrFail(1);
 	$user->posts()->create([
 		'title' => 'Post Baru',
 		'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -176,3 +176,31 @@ Route::get('/delete_post', function() {
    return 'success';
 });
 
+Route::get('/create_categories', function() {
+  //   $post = Post::findOrFail(1);
+
+  //   $post->categories()->create([
+		// 	'slug' => str_slug('Belajar PHP', '-'),
+		// 	'category' => 'Belajar PHP',
+		// ]);
+
+		// return 'success';
+
+	$user = User::create([
+		'name' => 'Robi',
+		'email' => 'robi@gmail.com',
+		'password' => bcrypt('8slamp')
+	]);
+
+	$user->posts()->create([
+		'title' => 'new title for robi',
+		'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+	])->categories()->create([
+		'slug' => str_slug('New Category', '-'),
+		'category' => 'New Category'
+	]);
+
+	return 'success';
+
+
+});
