@@ -89,6 +89,7 @@ Route::get('/read_profile', function() {
 	return $data;
 });
 
+// mengupdate data profile berdasarkan user id
 Route::get('/update_profile', function() {
     $user = User::find(2);
 
@@ -100,4 +101,13 @@ Route::get('/update_profile', function() {
     $user->profile()->update($data);
 
 		return $user;
+});
+
+// delete data berdasarkan user id
+Route::get('/delete_profile', function() {
+   $user = User::find(2);
+
+   $user->profile()->delete();
+
+   return $user;
 });
