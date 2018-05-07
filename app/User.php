@@ -27,9 +27,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    /*
+      method one to one profile
+    */
     public function profile()
     {
-        //
         return $this->hasOne(Profile::class);
+    }
+
+    /*
+    method one to many user -> post
+    */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
