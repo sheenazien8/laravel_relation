@@ -175,3 +175,4 @@ Route::get('/delete_post', function() {
 
    return 'success';
 });
+
