@@ -121,6 +121,7 @@ Route::get('/delete_profile', function() {
    return $user;
 });
 
+
 Route::get('/create_post', function() {
 
 	// $user = User::create([
@@ -136,4 +137,24 @@ Route::get('/create_post', function() {
 	]);
 
 	return 'success';
+});
+
+// read data hasmany
+Route::get('/read_post', function() {
+	$user = User::find(1);
+
+	$posts = $user->posts()->get();
+
+foreach ($posts as $post) {
+
+	$data[] =[
+		'name' => $post->user->name,
+		'post_id' => $post->id,
+		'title' => $post->title,
+		'body' => $post->body
+	];
+
+	return $data;
+
+	}
 });
