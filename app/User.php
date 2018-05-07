@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        // menghubungkan model user ke model profile
+        //
         return $this->hasOne(Profile::class);
     }
 }

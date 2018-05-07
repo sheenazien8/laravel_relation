@@ -30,21 +30,30 @@ Route::get('/create_user', function() {
 });
 
 Route::get('/create_profile', function() {
-    $profile = Profile::create([
-			'user_id' => 1,
-			'phone' => '089638706830',
-			'address' => 'JL. Baru no.8'
+  //   $profile = Profile::create([
+		// 	'user_id' => 1,
+		// 	'phone' => '089638706830',
+		// 	'address' => 'JL. Baru no.8'
+		// ]);
+
+		$user = User::find(1);
+
+		$user->profile()->create([
+			'phone' => '08837493443',
+			'address' => 'jalanjalanmu'
 		]);
 
-		return $profile;
+		return $user;
 });
+
+
 
 
 Route::get('/create_user_profile', function() {
 	// mengakses table user dengan id 2
 	$user = User::find(2);
 
-	// insert table profile dengan membawa user id 2
+	// insert table profile dengan membawa user id 2 menggunakan instance objek
 	$profile = new Profile([
 		'phone' => '0898673642',
 		'address' => 'Jl. Lama dan lama sekali',
@@ -77,7 +86,7 @@ Route::get('/read_user', function() {
 
 Route::get('/read_profile', function() {
 	// mengakses profile berdasarkan column phone
-	$profile = Profile::where('address','Jl. Lama dan lama sekali')->first();
+	$profile = Profile::where('address','jalanjalanmu')->first();
 
 	// mengakses kebalikannya
 	$data = [
@@ -105,7 +114,7 @@ Route::get('/update_profile', function() {
 
 // delete data berdasarkan user id
 Route::get('/delete_profile', function() {
-   $user = User::find(2);
+   $user = User::find(1);
 
    $user->profile()->delete();
 
