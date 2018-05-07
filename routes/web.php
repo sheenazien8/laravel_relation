@@ -54,6 +54,8 @@ Route::get('/create_user_profile', function() {
 	return $user;
 });
 
+
+
 Route::get('/read_user', function() {
 	// mengakses table user dengan id 1
 	$user = User::find(2);
@@ -72,9 +74,10 @@ Route::get('/read_user', function() {
 	return $data;
 });
 
+
 Route::get('/read_profile', function() {
 	// mengakses profile berdasarkan column phone
-	$profile = Profile::where('phone','089638706830')->first();
+	$profile = Profile::where('address','Jl. Lama dan lama sekali')->first();
 
 	// mengakses kebalikannya
 	$data = [
@@ -84,4 +87,17 @@ Route::get('/read_profile', function() {
 		'address' => $profile->address,
 	];
 	return $data;
+});
+
+Route::get('/update_profile', function() {
+    $user = User::find(2);
+
+    $data = [
+		'phone' => '07364276',
+		'address' => 'jlan jalan',
+		];
+
+    $user->profile()->update($data);
+
+		return $user;
 });
