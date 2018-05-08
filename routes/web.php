@@ -187,8 +187,8 @@ Route::get('/create_categories', function() {
 		// return 'success';
 
 	$user = User::create([
-		'name' => 'Robi',
-		'email' => 'robi@gmail.com',
+		'name' => 'Roki',
+		'email' => 'roki@gmail.com',
 		'password' => bcrypt('8slamp')
 	]);
 
@@ -227,11 +227,11 @@ Route::get('/read_category', function() {
 
 
 Route::get('/attach', function() {
-    $post = Post::find(3);
+    $post = Post::find(1);
     // attach memnentukan category mana yang akan digunakan oleh post tersebut
 
     // menambah di categori_post
-    $post->categories()->attach(1,2,3);
+    $post->categories()->attach([1,2,3]);
     // menginputkan 1,2,3 id data categori untuk post id dengan nilai 3
     return 'success';
 });
@@ -239,8 +239,16 @@ Route::get('/attach', function() {
 
 Route::get('/detach', function() {
   //menghapus data yang berelasi ketika ingin menghapus ketgori
-	$post = Post::find(2);
-	$post->categories()->detach(3);
+	$post = Post::find(5);
+	$post->categories()->detach(4);
+
+	return 'success';
+});
+
+Route::get('/sync', function (){
+	$post = Post::find(1);
+	// menyisakan post id 1 dengan categori id 1
+	$post->categories()->sync([1]);
 
 	return 'success';
 });
