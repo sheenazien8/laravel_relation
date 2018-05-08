@@ -131,7 +131,7 @@ Route::get('/create_post', function() {
 		'password' => bcrypt('8slamp'),
 	]);
 
-	// $user = User::findOrFail(1);
+	// $user = User::findOrFail(2);
 	$user->posts()->create([
 		'title' => 'Post Baru',
 		'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -153,7 +153,6 @@ Route::get('/read_post', function() {
 			'title' => $post->title,
 			'body' => $post->body
 	];
-
 	}
 });
 
@@ -208,22 +207,30 @@ Route::get('/create_categories', function() {
 
 Route::get('/read_category', function() {
 	// mencari data melalui model post
-    // $post = Post::find(1);
+    $post = Post::find(2);
 
-    // $categories = $post->categories;
-    // foreach ($categories as $category) {
-    // 	echo $category->slug."</br>";
-    // }
+    $categories = $post->categories;
+    foreach ($categories as $category) {
+    	echo $category->slug."</br>";
+    }
 
 // mencari data melalui model category
-	$category = Category::find(3);
+	// $category = Category::find(3);
 
-	$posts = $category->posts;
+	// $posts = $category->posts;
 
-	foreach ($posts as $post) {
-		echo $post->title. "</br>";
-	}
+	// foreach ($posts as $post) {
+	// 	echo $post->title. "</br>";
+	// }
 
 });
 
 
+Route::get('/attach', function() {
+    $post = Post::find(2);
+    // attach memnentukan category mana yang akan digunakan oleh post tersebut
+    // menambah di categori_post
+    $post->categories()->attach(1);
+
+    return 'success';
+});
