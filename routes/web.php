@@ -40,7 +40,7 @@ Route::get('/create_profile', function() {
 		$user = User::find(1);
 
 		$user->profile()->create([
-			'phone' => '08837493443',
+			'phone' => '476474',
 			'address' => 'jalanjalanmu'
 		]);
 
@@ -227,10 +227,20 @@ Route::get('/read_category', function() {
 
 
 Route::get('/attach', function() {
-    $post = Post::find(2);
+    $post = Post::find(3);
     // attach memnentukan category mana yang akan digunakan oleh post tersebut
-    // menambah di categori_post
-    $post->categories()->attach(1);
 
+    // menambah di categori_post
+    $post->categories()->attach(1,2,3);
+    // menginputkan 1,2,3 id data categori untuk post id dengan nilai 3
     return 'success';
+});
+
+
+Route::get('/detach', function() {
+  //menghapus data yang berelasi ketika ingin menghapus ketgori
+	$post = Post::find(2);
+	$post->categories()->detach(3);
+
+	return 'success';
 });
