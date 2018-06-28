@@ -125,16 +125,16 @@ Route::get('/delete_profile', function() {
 
 Route::get('/create_post', function() {
 
-	$user = User::create([
-		'name' => 'Sheena',
-		'email' => 'sheenazien@gmial.com',
-		'password' => bcrypt('8slamp'),
-	]);
+	// $user = User::create([
+	// 	'name' => 'Sheena',
+	// 	'email' => 'sheenazien@gmial.com',
+	// 	'password' => bcrypt('8slamp'),
+	// ]);
 
-	// $user = User::findOrFail(2);
+	$user = User::findOrFail(2);
 	$user->posts()->create([
-		'title' => 'Post Baru',
-		'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+		'title' => 'Post Baru Member 1',
+		'body' => 'Content Member 1.'
 	]);
 
 	return 'success';
